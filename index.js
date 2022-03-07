@@ -13,12 +13,13 @@ db.on("error", (error) => console.log(error));
 db.once("open", () => console.log("Connected to database"));
 
 
-
-
-app.use("/students", studentRouter);
-app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors());
+app.use("/students", studentRouter);
+
+
 app.set("port", process.env.port || 2627);
 
 

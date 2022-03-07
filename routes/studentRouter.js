@@ -51,7 +51,7 @@ router.post("/", async (req, res, next) => {
           JSON.stringify(newStudent),
           process.env.JWT_SECRET_KEY
         );
-        res.status(201).json({ jwt: access_token, name: name });
+        res.status(201).json("user created");
       } catch (error) {
         res.status(500).json({ message: error.message });
       }
