@@ -17,14 +17,14 @@ router.post('/',(req,res) =>{
       });
       
       let mailOptions = {
-        from: email,
+        from: 'melissamitchell2627@gmail.com',
         to: 'mymentor2627@gmail.com',
         subject: `From ${name} using the Mentor App`,
         text: `
         How ${name} is feeling :
         
         ${feels}
-        
+
         The rating of ${name}'s two week experience :
 
         ${exp}
