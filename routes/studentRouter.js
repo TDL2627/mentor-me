@@ -25,6 +25,15 @@ router.get("/", async (req, res) => {
     res.send(res.student);
   });
 
+  // GET ONE STUDENT 2.0
+router.get("/1student/", auth,async (req, res, next) => {
+  try {
+    const student = await Student.findById(req.student._id)
+  res.status(201).json(student)
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
   // REGISTER a student
 router.post("/", async (req, res, next) => {

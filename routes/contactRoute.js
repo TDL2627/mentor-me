@@ -49,7 +49,7 @@ router.post('/',(req,res) =>{
           res.status(400).send({msg:"error"+error})
         } else {
           console.log('Email sent: ' + info.response);
-          res.send(alert("Feed Back Sent."))
+          res.send()
         }
       });
     
