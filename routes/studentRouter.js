@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
 
   // REGISTER a student
 router.post("/", async (req, res, next) => {
-    const { name, email, contact, password,  avatar, type, subject } = req.body;
+    const { name, email, contact, password,  avatar, subject } = req.body;
   
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -38,7 +38,6 @@ router.post("/", async (req, res, next) => {
       email,
       contact,
       avatar,
-      type,
       subject,
       password: hashedPassword,
     });
