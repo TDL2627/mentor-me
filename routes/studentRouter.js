@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
   // });
 
   // GET ONE STUDENT 2.0
-router.get("/student/", auth,async (req, res, next) => {
+router.get("/1/", auth,async (req, res, next) => {
   try {
     const student = await Student.findById(req.student._id)
   res.status(201).json(student)

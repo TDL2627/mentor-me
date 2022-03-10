@@ -6,6 +6,8 @@ const app = express();
 const mongoose = require("mongoose")
 const studentRouter = require("./routes/studentRouter")
 const contactRouter = require("./routes/contactRoute")
+const infoRouter = require("./routes/infoRoute")
+
 
 // mongo db connection
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
@@ -20,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors());
 app.use("/students", studentRouter);
 app.use("/contact", contactRouter);
+app.use("/info", infoRouter);
 
 app.set("port", process.env.port || 2627);
 
@@ -39,6 +42,9 @@ app.get("/contact", function(req, res){
   res.send("This is contact page");
 });
 
+app.get("/info", function(req, res){
+  res.send("This is the information page");
+});
 
 app.get("/students", function(req, res){
     res.send(students)
