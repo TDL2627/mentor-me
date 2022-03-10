@@ -20,13 +20,13 @@ router.get("/", async (req, res) => {
   });
 
 
-  // GET one student
-  router.get("/:id", getStudent, (req, res, next) => {
-    res.send(res.student);
-  });
+ // GET one student
+  // router.get("/:id", getStudent, (req, res, next) => {
+  //   res.send(res.student);
+  // });
 
   // GET ONE STUDENT 2.0
-router.get("/1student/", auth,async (req, res, next) => {
+router.get("/student/", auth,async (req, res, next) => {
   try {
     const student = await Student.findById(req.student._id)
   res.status(201).json(student)
