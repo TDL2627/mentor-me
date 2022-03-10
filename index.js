@@ -5,6 +5,7 @@ const cors = require('cors')
 const app = express();
 const mongoose = require("mongoose")
 const studentRouter = require("./routes/studentRouter")
+const contactRouter = require("./routes/contactRoute")
 
 // mongo db connection
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors());
 app.use("/students", studentRouter);
-
+app.use("/contact", contactRouter);
 
 app.set("port", process.env.port || 2627);
 
