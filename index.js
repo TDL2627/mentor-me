@@ -35,6 +35,11 @@ app.get("/", function(req, res){
     res.send("This is home page");
 });
 
+app.get("/contact", function(req, res){
+  res.send("This is contact page");
+});
+
+
 app.get("/students", function(req, res){
     res.send(students)
 });
