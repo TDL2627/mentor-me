@@ -7,7 +7,7 @@ const mongoose = require("mongoose")
 const studentRouter = require("./routes/studentRouter")
 const contactRouter = require("./routes/contactRoute")
 const infoRouter = require("./routes/infoRoute")
-
+const mentorRouter = require("./routes/mentorRoute")
 
 // mongo db connection
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
@@ -23,6 +23,7 @@ app.use(cors());
 app.use("/students", studentRouter);
 app.use("/contact", contactRouter);
 app.use("/info", infoRouter);
+app.use("/mentors", mentorRouter);
 
 app.set("port", process.env.port || 2627);
 
