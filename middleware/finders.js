@@ -13,5 +13,16 @@ async function getStudent(req, res, next) {
     next();
   }
 
+  async function getNote(req, res, next) {
+    let note;
+    try {
+      note = await Note.findById(req.params.id);
+      if (!note) res.status(404).json({ message: "Could not find note" });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+    res.note = note;
+    next();
+  }
 
-  module.exports = {getStudent}
+  module.exports = {getStudent, getNote}

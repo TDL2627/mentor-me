@@ -8,7 +8,7 @@ const studentRouter = require("./routes/studentRouter")
 const contactRouter = require("./routes/contactRoute")
 const infoRouter = require("./routes/infoRoute")
 const mentorRouter = require("./routes/mentorRoute")
-
+const noteRouter = require("./routes/noteRoute")
 // mongo db connection
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -24,6 +24,7 @@ app.use("/students", studentRouter);
 app.use("/contact", contactRouter);
 app.use("/info", infoRouter);
 app.use("/mentors", mentorRouter);
+app.use("/note", noteRouter);
 
 app.set("port", process.env.port || 2627);
 
@@ -49,6 +50,10 @@ app.get("/info", function(req, res){
 
 app.get("/students", function(req, res){
     res.send(students)
+});
+
+app.get("/note", function(req, res){
+  res.send(notes)
 });
 
 app.post('/login', (req, res) => {
