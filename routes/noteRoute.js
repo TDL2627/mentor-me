@@ -45,21 +45,31 @@ router.put("/:id", [auth, getNote], async (req, res, next) => {
     if (req.student._id !== res.note.author)
       res
         .status(400)
-        .json({ message: "You do not have the permission to update this product" });
-    const { name, price, category, img } = req.body;
-    if (name) res.product.name = name;
-    if (price) res.product.price = price;
-    if (category) res.product.category = category;
-    if (img) res.product.img = img;
-  
+        .json({ message: "You do not have the permission to update this note" });
+    const { title, body } = req.body;
+    if (title) res.note.title = title;
+    if (body) res.note.body = body;
     try {
-      const updatedProduct = await res.product.save();
-      res.status(201).send(updatedProduct);
+      const updatedNote = await res.note.save();
+      res.status(201).send(updatedNote);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
   });
 
+  // delete note
+  router.delete("/:id", [auth, getNote], async (req, res, next) => {
+    if (req.student._id !== res.note.author)
+      res
+        .status(400)
+        .json({ message: "You do not have the permission to delete this note" });
+    try {
+      await res.note.remove();
+      res.json({ message: "Deleted note" });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  });
 
 
   module.exports = router;
