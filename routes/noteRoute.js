@@ -40,5 +40,26 @@ router.post("/", auth, async (req, res, next) => {
     }
   });
 
+//   edit note
+router.put("/:id", [auth, getNote], async (req, res, next) => {
+    if (req.student._id !== res.note.author)
+      res
+        .status(400)
+        .json({ message: "You do not have the permission to update this product" });
+    const { name, price, category, img } = req.body;
+    if (name) res.product.name = name;
+    if (price) res.product.price = price;
+    if (category) res.product.category = category;
+    if (img) res.product.img = img;
+  
+    try {
+      const updatedProduct = await res.product.save();
+      res.status(201).send(updatedProduct);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  });
+
+
 
   module.exports = router;
