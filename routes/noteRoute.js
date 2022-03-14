@@ -26,7 +26,7 @@ router.get("/:id", [auth, getNote], (req, res, next) => {
 router.post("/", auth, async (req, res, next) => {
     const { title, body } = req.body;
     let note;
-     (note = new Note({
+(  note = new Note({
           title,
           body,
           author: req.student._id,
@@ -70,6 +70,6 @@ router.put("/:id", [auth, getNote], async (req, res, next) => {
       res.status(500).json({ message: error.message });
     }
   });
-
+ 
 
   module.exports = router;

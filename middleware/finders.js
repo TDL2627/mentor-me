@@ -1,4 +1,5 @@
 const Student = require("../models/student");
+const Note = require("../models/note")
 
 async function getStudent(req, res, next) {
     let student;
