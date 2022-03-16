@@ -18,11 +18,11 @@ router.get("/", auth, async (req, res) => {
   });
 
   // GET one note
-router.get("/:id", [auth, getNote], (req, res, next) => {
+router.get("/:id",  getNote , (req, res, next) => {
     res.send(res.note);
   });
 
-// CREATE a note
+// CREATE a note 
 router.post("/", auth, async (req, res, next) => {
     const { title, body } = req.body;
     let note;

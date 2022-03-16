@@ -26,9 +26,9 @@ router.get("/", async (req, res) => {
   });
 
   // GET ONE STUDENT 2.0
-router.get("/1", auth,async (req, res, next) => {
+router.get("/1/", auth, async (req, res, next) => {
   try {
-    const student = await Student.findById(req.student._id)
+    const student = await Student.findBy(req.student._id)
   res.status(201).json(student)
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -113,7 +113,7 @@ router.patch("/", async (req, res, next) => {
         );
         res.status(201).json({ jwt: access_token });
       } catch (error) {
-        res.status(500).json({ message: error.message }); v
+        res.status(500).json({ message: error.message }); 
       }
     } else {
       res

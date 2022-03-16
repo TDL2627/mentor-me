@@ -1,6 +1,5 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const student = require("../models/student");
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
