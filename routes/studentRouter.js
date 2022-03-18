@@ -103,7 +103,7 @@ router.delete("/:id", getStudent, async (req, res, next) => {
 router.patch("/", async (req, res, next) => {
     const { email, password } = req.body;
     const student = await Student.findOne({ email });
-  
+ 
     if (!student) res.status(404).json({ message: "Could not find student" });
     if (await bcrypt.compare(password, student.password)) {
       try {
@@ -111,7 +111,9 @@ router.patch("/", async (req, res, next) => {
           JSON.stringify(student),
           process.env.JWT_SECRET_KEY
         );
-        res.status(201).json({ jwt: access_token });
+
+
+        res.status(201).json({ jwt: access_token , student });
       } catch (error) {
         res.status(500).json({ message: error.message }); 
       }
