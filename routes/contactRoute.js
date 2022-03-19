@@ -39,11 +39,11 @@ router.post('/',(req,res) =>{
 
         ${exp}
 
-        Issues the ${name} is having  :
+        Issues  ${name} is having  :
 
         ${issue}
 
-         What the ${name} has to say :
+         What  ${name} has to say :
             
         ${say}
 
