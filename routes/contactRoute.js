@@ -5,7 +5,7 @@ require('dotenv').config ();
 
 
 router.post('/',(req,res) =>{ 
-    const{name,feels,exp,issue,say} =req.body;
+    const{name,feels,exp,issue,say,email,subject,number} =req.body;
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         host: "smtp.gmail.com",
@@ -18,10 +18,19 @@ router.post('/',(req,res) =>{
       });
       
       let mailOptions = {
-        from: 'melissamitchell2627@gmail.com',
+        from: `${email}`,
         to: 'mymentor2627@gmail.com',
         subject: `From ${name} using the Mentor App`,
         text: `
+   
+       MENTEE DETAILS :
+       NAME: ${name}
+       EMAIL: ${email}
+       NUMBER: ${number}
+       SUBJECT: ${subject}
+       ---------------
+        FEEDBACK :
+
         How ${name} is feeling :
         
         ${feels}
