@@ -38,7 +38,16 @@ let students = [
 
 // router links
 app.get("/", function(req, res){
-    res.send("This is home page");
+    res.send(`<h1>Welcome to myMentor app</h1>
+    <br><br>
+
+    
+    
+    
+    
+    
+    
+    `);
 });
 
 app.get("/contact", function(req, res){
