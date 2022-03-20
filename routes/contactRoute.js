@@ -48,7 +48,7 @@ router.post('/',(req,res) =>{
         ${say}
 
 
-        
+        DEVELOPED BY TDL2627
         `,
       };
       
@@ -65,7 +65,7 @@ router.post('/',(req,res) =>{
     
 });
 
-
+// when student edits their account
 router.post('/edit',(req,res) =>{ 
   const{name,email,subject,number} =req.body;
   let transporter = nodemailer.createTransport({
@@ -95,7 +95,7 @@ router.post('/edit',(req,res) =>{
     You have edited your profile.
     Thank you for using this app.
 
-
+    DEVELOPED BY TDL2627
       
       `,
     };
@@ -135,7 +135,7 @@ router.post('/delete',(req,res) =>{
     You have deleted your account.
     Thank you for using this app.
 
-
+    DEVELOPED BY TDL2627
       
       `,
     };
