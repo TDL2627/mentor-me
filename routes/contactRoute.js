@@ -65,4 +65,93 @@ router.post('/',(req,res) =>{
     
 });
 
+
+router.post('/edit',(req,res) =>{ 
+  const{name,email,subject,number} =req.body;
+  let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+      auth: {
+          user: process.env.USER,
+          pass: process.env.PASS
+      }
+    });
+    
+    let mailOptions = {
+      from: 'peterpans2627@gmail.com',
+      to: `${email}`,
+      subject: `From ${name} using the Mentor App`,
+      text: `
+ 
+
+     MENTEE DETAILS :
+     NAME: ${name}
+     EMAIL: ${email}
+     NUMBER: ${number}
+     SUBJECT: ${subject}
+     ---------------
+    You have edited your profile.
+    Thank you for using this app.
+
+
+      
+      `,
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        res.status(400).send({msg:"error"+error})
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.send()
+      }
+    });
+  
+  
+});
+
+router.post('/delete',(req,res) =>{ 
+  const{name,email} =req.body;
+  let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+      auth: {
+          user: process.env.USER,
+          pass: process.env.PASS
+      }
+    });
+    
+    let mailOptions = {
+      from: 'peterpans2627@gmail.com',
+      to: `${email}`,
+      subject: `From ${name} using the Mentor App`,
+      text: `
+ 
+    You have deleted your account.
+    Thank you for using this app.
+
+
+      
+      `,
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        res.status(400).send({msg:"error"+error})
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.send()
+      }
+    });
+  
+  
+});
+
+
 module.exports = router;
