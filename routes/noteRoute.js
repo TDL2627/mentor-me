@@ -41,11 +41,8 @@ router.post("/", auth, async (req, res, next) => {
   });
 
 //   edit note
-router.put("/:id", [auth, getNote], async (req, res, next) => {
-    if (req.student._id !== res.note.author)
-      res
-        .status(400)
-        .json({ message: "You do not have the permission to update this note" });
+router.put("/:id",  getNote, async (req, res, next) => {
+    
     const { title, body } = req.body;
     if (title) res.note.title = title;
     if (body) res.note.body = body;
