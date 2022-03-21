@@ -8,14 +8,25 @@ const { getNote, getStudent } = require("../middleware/finders");
 const router = express.Router();
 
 // GET all notes
-router.get("/", auth, async (req, res) => {
+// router.get("/", [auth, getNote], async (req, res) => {
+//   if (req.student._id == res.note.author)
+//     try {
+//       const notes = await Note.find();
+//       res.status(201).send(notes);
+//     } catch (error) {
+//       res.status(500).send({ message: error.message });
+//     }
+//   });
+
+  router.get("/", auth, async (req, res, next) => {
     try {
-      const notes = await Note.find();
-      res.status(201).send(notes);
+      const note = await Note.find({ author: { $regex: req.student._id } });
+      res.status(201).json(note);
     } catch (error) {
-      res.status(500).send({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   });
+  
 
   // GET one note
 router.get("/:id",  getNote , (req, res, next) => {
