@@ -1,11 +1,12 @@
+require('dotenv').config ();
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
-require('dotenv').config ();
+
 
 
 router.post('/',(req,res) =>{ 
-    const{name,feels,exp,issue,say,email,subject,number} =req.body;
+    const{name,feels,exp,issue,say,email,subject,contact} =req.body;
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         host: "smtp.gmail.com",
@@ -26,7 +27,7 @@ router.post('/',(req,res) =>{
        MENTEE DETAILS :
        NAME: ${name}
        EMAIL: ${email}
-       NUMBER: ${number}
+       NUMBER: ${contact}
        SUBJECT: ${subject}
        ---------------
         FEEDBACK :
@@ -67,7 +68,7 @@ router.post('/',(req,res) =>{
 
 // when student edits their account
 router.post('/edit',(req,res) =>{ 
-  const{name,email,subject,number} =req.body;
+  const{name,email,subject,contact} =req.body;
   let transporter = nodemailer.createTransport({
       service: 'gmail',
       host: "smtp.gmail.com",
@@ -89,7 +90,7 @@ router.post('/edit',(req,res) =>{
      MENTEE DETAILS :
      NAME: ${name}
      EMAIL: ${email}
-     NUMBER: ${number}
+     NUMBER: ${contact}
      SUBJECT: ${subject}
      ---------------
     You have edited your profile.
