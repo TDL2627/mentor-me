@@ -8,7 +8,7 @@ const { getNote, getStudent } = require("../middleware/finders");
 const router = express.Router();
 
 // get all notes for admin
-router.get("/admin", auth, async (req, res) => {
+router.get("/admin", async (req, res) => {
   try {
     const notes = await Note.find();
     res.status(201).send(notes);
