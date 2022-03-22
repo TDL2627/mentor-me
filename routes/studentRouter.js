@@ -37,7 +37,7 @@ router.get("/1/", auth, async (req, res, next) => {
 
   // REGISTER a student
 router.post("/", async (req, res, next) => {
-    const { name, email, contact, password,  avatar, subject } = req.body;
+    const { name, email, contact, password,  avatar, subject,role } = req.body;
   
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -48,6 +48,7 @@ router.post("/", async (req, res, next) => {
       contact,
       avatar,
       subject,
+      role,
       password: hashedPassword,
     });
   
@@ -123,6 +124,32 @@ router.patch("/", async (req, res, next) => {
         .json({ message: "Email and password combination do not match" });
     }
   });
+
+  
+  // LOGIN student with email + password
+router.patch("/admin", async (req, res, next) => {
+  const { email, password } = req.body;
+  const student = await Student.findOne({ email });
+
+  if (!student) res.status(404).json({ message: "Could not find admin" });
+  if (await bcrypt.compare(password, student.password)) {
+    try {
+      const access_token = jwt.sign(
+        JSON.stringify(student),
+        process.env.JWT_SECRET_KEY
+      );
+
+
+      res.status(201).json({ jwt: access_token , student });
+    } catch (error) {
+      res.status(500).json({ message: error.message }); 
+    }
+  } else {
+    res
+      .status(400)
+      .json({ message: "Email and password combination do not match" });
+  }
+});
 
 
   
