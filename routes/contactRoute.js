@@ -19,7 +19,7 @@ router.post('/',(req,res) =>{
       });
       
       let mailOptions = {
-        from: 'peterpans2627@gmail.com',
+        from: 'pigeon2627@gmail.com',
         to: 'mymentor2627@gmail.com',
         subject: `From ${name} using the Mentor App`,
         text: `
@@ -81,7 +81,7 @@ router.post('/edit',(req,res) =>{
     });
     
     let mailOptions = {
-      from: 'peterpans2627@gmail.com',
+      from: 'pigeon2627@gmail.com',
       to: `${email}`,
       subject: `From ${name} using the Mentor App`,
       text: `
@@ -128,7 +128,7 @@ router.post('/delete',(req,res) =>{
     });
     
     let mailOptions = {
-      from: 'peterpans2627@gmail.com',
+      from: 'pigeon2627@gmail.com',
       to: `${email}`,
       subject: `From ${name} using the Mentor App`,
       text: `
