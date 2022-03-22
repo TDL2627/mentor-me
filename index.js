@@ -40,6 +40,7 @@ let students = [
 app.get("/", function(req, res){
     res.send(`<h1>Welcome to myMentor app created by TDL2627</h1>
     https://mymentor-server.herokuapp.com/
+    http://localhost:2627/
     <style>
     .div1{
       background:aqua; text-align:center;
