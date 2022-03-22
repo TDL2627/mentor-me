@@ -127,6 +127,15 @@ app.get("/", function(req, res){
  /shuttle
  </div>
 
+ <div class="div2">
+ <h3>ADMIN routes</h3>
+ <h5>PATCH (login as admin)</h5>
+ /student/admin
+ <h5>GET (all notes as admin)</h5>
+ /note/admin
+ <h5>GET (all students as admin)</h5>
+ /students
+ </div>
     
     
     
