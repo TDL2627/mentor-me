@@ -7,7 +7,19 @@ const { getNote, getStudent } = require("../middleware/finders");
 
 const router = express.Router();
 
-// GET all notes
+// get all notes for admin
+router.get("/admin", auth, async (req, res) => {
+  try {
+    const notes = await Note.find();
+    res.status(201).send(notes);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+});
+
+
+
+// GET all notes that a specific author created
   router.get("/", auth, async (req, res, next) => {
     try {
       const note = await Note.find({ author: { $regex: req.student._id } });
