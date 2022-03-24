@@ -132,7 +132,6 @@ router.patch("/admin", async (req, res, next) => {
   const student = await Student.findOne({ email });
 
   if (!student) res.status(404).json({ message: "Could not find admin" });
-  if(!student.role)  res.status(404).json({ message: "Could not find admin" })
   if (await bcrypt.compare(password, student.password)) {
     try {
       const access_token = jwt.sign(
